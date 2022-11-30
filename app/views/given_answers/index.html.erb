@@ -1,0 +1,28 @@
+
+ <% Quiz.all.each do |quiz| %>
+   <h1> <%= quiz.quiz_category %> category </h1>
+    <table class="table w-100">
+        <tr>
+            <th>Question</th>
+            <th>Correct Answer</th>
+            <th>Your Answer</th>
+            <th>Result</th>
+        </tr>
+        <% @answers.where(quiz_id: quiz.id).last(3).each do |ga| %>
+            <tr>
+                <td> <%= Question.find(ga.question_id).question_content %> </td>
+                <td> <%= Question.find(ga.question_id).correct_answer %> </td>
+                <td> <%= ga.given_option_number %> </td>
+               
+
+            <% if ga.given_option_number == Question.find(ga.question_id).correct_answer %>
+                <td> correct </td>
+             <% else %>
+                 <td> wrong </td>
+             <% end %>
+
+            </tr>
+        <%end%>
+
+    </table>
+<% end %>

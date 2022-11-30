@@ -1,0 +1,45 @@
+<%= form_with model: @question do |form| %>
+    <div>
+      <%= form.label :question_number %><br>
+      <%= form.text_field :question_number %>
+    </div>
+  
+    <div>
+      <%= form.label :question_content %><br>
+      <%= form.text_area :question_content %>
+    </div>
+
+    <div>
+      <%= form.label :correct_answer %><br>
+      <%= form.text_area :correct_answer %>
+    </div>
+
+    <div>
+    <%= form.label :option_content_one %><br>
+    <%= form.text_area :option_content_one %>
+    </div>
+
+    <div>
+    <%= form.label :option_content_two %><br>
+    <%= form.text_area :option_content_two %>
+    </div>
+
+    <div>
+    <%= form.label :option_content_three %><br>
+    <%= form.text_area :option_content_three %>
+    </div>
+
+    <div>
+    <%= form.label :option_content_four %><br>
+    <%= form.text_area :option_content_four %>
+    </div>
+
+    <div class="field">
+        <%=form.label:quiz_id%><br />
+        <%=form.select:quiz_id,Quiz.all.collect{|quiz| [quiz.quiz_category,quiz.id]}%>
+    </div>
+  
+    <div>
+      <%= form.submit %>
+    </div>
+<% end %>

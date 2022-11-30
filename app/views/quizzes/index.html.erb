@@ -1,0 +1,13 @@
+<h1> CATEGORIES </h1>
+
+<% @quizzes.each do |q| %>
+    <div class="">
+    <%= button_to q.quiz_category , quiz_path(q) , method: :get , class:"cat-box"%>
+    </div>
+<% end %>
+
+<% if current_user.is_admin? %>
+<%= button_to "Add Question", new_question_path ,method: :get, class:"btn btn-primary "%> 
+<%end%>
+
+

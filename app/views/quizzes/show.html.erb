@@ -1,0 +1,49 @@
+<% Question.where(quiz_id:@quiz.id).each do |q| %>
+
+    <div>
+    <%= q.question_number %>
+    <%= q.question_content %></br>
+    <%= q.option_content_one %>
+    <%= q.option_content_two %>
+    <%= q.option_content_three %>
+    <%= q.option_content_four %>
+
+  
+    <%= form_with url: "/given_answers/new", method: :post do |form| %>
+
+        <div class="form-group">
+            <%= form.radio_button :given_option_number, "A" %>
+            <%= form.label :given_option_number, "A" %>
+
+            <%= form.radio_button :given_option_number, "B" %>
+            <%= form.label :given_option_number, "B" %>
+
+            <%= form.radio_button :given_option_number, "C" %>
+            <%= form.label :given_option_number, "C" %>
+
+            <%= form.radio_button :given_option_number, "D" %>
+            <%= form.label :given_option_number, "D" %>
+        </div>
+
+        <div>
+        <%= form.hidden_field :question_id, value: q.id %>
+        </div>
+
+        <div>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        </div>
+
+        <div>
+        <%= form.hidden_field :quiz_id, value: @quiz.id %>
+        </div>
+
+        <div>
+        <%= form.submit "Submit" %>
+        </div>
+
+
+    <% end %>
+
+<% end %>
+
+<%= button_to "View Results" , given_answers_path , method: :get %>
